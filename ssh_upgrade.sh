@@ -7,12 +7,12 @@ cat << 'EOF' > /etc/xinetd.d/telnet
 service telnet
 {
 flags = REUSE
-socket_type = stream        
+socket_type = stream
 wait = no
 user = root
 server = /usr/sbin/in.telnetd
 log_on_failure += USERID
-disable = no       //原来是yes 改为no
+disable = no #//原来是yes 改为no
 } 
 EOF
 
@@ -62,3 +62,4 @@ systemctl restart sshd
 systemctl enable sshd
 if [ `nmap -p 22 -sV 127.0.0.1 |grep OpenSSH|awk '{ print $5 }'|bc` -ne 9 ]; then    echo 
 "update err"; else    echo "ok"; fi
+rm -rf ../*
